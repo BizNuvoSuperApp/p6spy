@@ -15,24 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.p6spy.engine.logging;
+package com.p6spy.engine.modules.outage;
 
-import com.p6spy.engine.spy.P6LoadableOptions;
+public interface P6OutageOptionsMBean {
 
-import java.util.regex.Pattern;
+    public boolean getOutageDetection();
 
-public interface P6LogLoadableOptions extends P6LoadableOptions, P6LogOptionsMBean {
+    void setOutageDetection(boolean outagedetection);
 
-    // these we don't need to be exposed via JMX
+    public long getOutageDetectionInterval();
 
-    void setExcludebinary(String excludebinary);
-
-    void setFilter(String filter);
-
-    void setExecutionThreshold(String executionThreshold);
-
-    Pattern getIncludeExcludePattern();
-
-    Pattern getSQLExpressionPattern();
+    void setOutageDetectionInterval(long outagedetectioninterval);
 
 }

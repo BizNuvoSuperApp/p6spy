@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy.option;
 
-import com.p6spy.engine.logging.P6LogOptions;
+import com.p6spy.engine.modules.logging.P6LogOptions;
 import com.p6spy.engine.test.BaseTestCase;
 import com.p6spy.engine.test.P6TestFramework;
 import org.junit.After;

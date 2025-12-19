@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.p6spy.engine.logging;
+package com.p6spy.engine.modules.logging;
 
 import com.p6spy.engine.event.JdbcEventListener;
 import com.p6spy.engine.spy.P6Factory;

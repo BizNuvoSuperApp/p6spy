@@ -20,7 +20,7 @@ package com.p6spy.engine.spy;
 import com.p6spy.engine.common.ConnectionInformation;
 import com.p6spy.engine.common.StatementInformation;
 import com.p6spy.engine.event.JdbcEventListener;
-import com.p6spy.engine.logging.P6LogOptions;
+import com.p6spy.engine.modules.logging.P6LogOptions;
 import com.p6spy.engine.test.P6TestFramework;
 import com.p6spy.engine.wrapper.AbstractWrapper;
 import com.p6spy.engine.wrapper.ConnectionWrapper;

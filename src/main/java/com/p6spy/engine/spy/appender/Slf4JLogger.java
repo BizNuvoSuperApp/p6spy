@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy.appender;
 
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

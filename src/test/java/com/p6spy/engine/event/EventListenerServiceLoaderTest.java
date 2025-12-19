@@ -18,7 +18,7 @@
 package com.p6spy.engine.event;
 
 import com.p6spy.engine.common.ConnectionInformation;
-import com.p6spy.engine.logging.LoggingEventListener;
+import com.p6spy.engine.modules.logging.LoggingEventListener;
 import com.p6spy.engine.spy.DefaultJdbcEventListenerFactory;
 import com.p6spy.engine.test.TestJdbcEventListener;
 import com.p6spy.engine.test.TestLoggingEventListener;

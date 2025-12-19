@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy.appender;
 
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 
 public interface P6Logger {
 

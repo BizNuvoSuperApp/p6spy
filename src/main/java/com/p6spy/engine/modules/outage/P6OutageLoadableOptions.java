@@ -15,23 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.p6spy.engine.outage;
+package com.p6spy.engine.modules.outage;
 
-import com.p6spy.engine.event.JdbcEventListener;
-import com.p6spy.engine.spy.P6Factory;
 import com.p6spy.engine.spy.P6LoadableOptions;
-import com.p6spy.engine.spy.option.P6OptionsRepository;
 
-public class P6OutageFactory implements P6Factory {
+public interface P6OutageLoadableOptions extends P6LoadableOptions, P6OutageOptionsMBean {
 
-    @Override
-    public JdbcEventListener getJdbcEventListener() {
-        return OutageJdbcEventListener.INSTANCE;
-    }
+    public long getOutageDetectionIntervalMS();
 
-    @Override
-    public P6LoadableOptions getOptions(P6OptionsRepository optionsRepository) {
-        return new P6OutageOptions(optionsRepository);
-    }
+    void setOutageDetection(String outagedetection);
 
+    void setOutageDetectionInterval(String outagedetectioninterval);
 }

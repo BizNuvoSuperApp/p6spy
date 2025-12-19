@@ -17,9 +17,9 @@
  */
 package com.p6spy.engine.common;
 
-import com.p6spy.engine.logging.Category;
-import com.p6spy.engine.logging.P6LogLoadableOptions;
-import com.p6spy.engine.logging.P6LogOptions;
+import com.p6spy.engine.modules.logging.Category;
+import com.p6spy.engine.modules.logging.P6LogLoadableOptions;
+import com.p6spy.engine.modules.logging.P6LogOptions;
 import com.p6spy.engine.spy.P6ModuleManager;
 import com.p6spy.engine.spy.P6SpyOptions;
 import com.p6spy.engine.spy.appender.FileLogger;

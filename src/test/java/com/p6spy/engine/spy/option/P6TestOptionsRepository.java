@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy.option;
 
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 import com.p6spy.engine.spy.appender.CustomLineFormat;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 import com.p6spy.engine.spy.appender.MultiLineFormat;

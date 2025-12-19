@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.p6spy.engine.outage;
+package com.p6spy.engine.modules.outage;
 
 import com.p6spy.engine.common.P6LogQuery;
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

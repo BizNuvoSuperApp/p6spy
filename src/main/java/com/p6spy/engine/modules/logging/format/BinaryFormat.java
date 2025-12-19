@@ -15,16 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.p6spy.engine.outage;
+package com.p6spy.engine.modules.logging.format;
 
-public interface P6OutageOptionsMBean {
-
-    public boolean getOutageDetection();
-
-    void setOutageDetection(boolean outagedetection);
-
-    public long getOutageDetectionInterval();
-
-    void setOutageDetectionInterval(long outagedetectioninterval);
-
+public interface BinaryFormat {
+    /**
+     * Transforms the supplied binary data to a string representation.
+     * Wraps the value in quotes if the database dialect requires them.
+     *
+     * @param input
+     *    the binary data input value to convert to {@link String}
+     * @return
+     *    the {@link String} representation of the given bytes
+     */
+    public String toString(byte[] input);
 }

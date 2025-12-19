@@ -19,8 +19,8 @@ package com.p6spy.engine.spy;
 
 import com.j256.simplejmx.client.JmxClient;
 import com.p6spy.engine.common.P6Util;
-import com.p6spy.engine.logging.P6LogOptions;
-import com.p6spy.engine.outage.P6OutageOptions;
+import com.p6spy.engine.modules.logging.P6LogOptions;
+import com.p6spy.engine.modules.outage.P6OutageOptions;
 import com.p6spy.engine.test.BaseTestCase;
 import com.p6spy.engine.test.P6TestFramework;
 import org.junit.BeforeClass;

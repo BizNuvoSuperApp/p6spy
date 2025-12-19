@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.common;
 
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 
 import java.sql.ResultSet;
 import java.util.Collections;

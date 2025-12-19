@@ -15,34 +15,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.p6spy.engine.spy.appender;
+package com.p6spy.engine.modules.outage;
 
-import com.p6spy.engine.modules.logging.Category;
+import com.p6spy.engine.event.JdbcEventListener;
+import com.p6spy.engine.spy.P6Factory;
+import com.p6spy.engine.spy.P6LoadableOptions;
+import com.p6spy.engine.spy.option.P6OptionsRepository;
 
-import java.io.PrintStream;
+public class P6OutageFactory implements P6Factory {
 
-public class StdoutLogger extends FormattedLogger {
-
-    protected PrintStream getStream() {
-        return System.out;
+    @Override
+    public JdbcEventListener getJdbcEventListener() {
+        return OutageJdbcEventListener.INSTANCE;
     }
 
     @Override
-    public void logException(Exception e) {
-        e.printStackTrace(getStream());
+    public P6LoadableOptions getOptions(P6OptionsRepository optionsRepository) {
+        return new P6OutageOptions(optionsRepository);
     }
 
-    @Override
-    public void logText(String text) {
-        if (!text.trim().isEmpty()) {
-            getStream().println(text);
-        }
-    }
-
-    @Override
-    public boolean isCategoryEnabled(Category category) {
-        // no restrictions on logger side
-        return true;
-    }
 }
-

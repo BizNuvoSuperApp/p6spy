@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy;
 
-import com.p6spy.engine.logging.format.BinaryFormat;
+import com.p6spy.engine.modules.logging.format.BinaryFormat;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
 import com.p6spy.engine.spy.appender.P6Logger;
 

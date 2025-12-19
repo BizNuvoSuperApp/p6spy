@@ -18,13 +18,13 @@
 package com.p6spy.engine.spy.option;
 
 import com.p6spy.engine.common.P6LogQuery;
-import com.p6spy.engine.logging.Category;
-import com.p6spy.engine.logging.P6LogFactory;
-import com.p6spy.engine.logging.P6LogLoadableOptions;
-import com.p6spy.engine.logging.P6LogOptions;
-import com.p6spy.engine.outage.P6OutageFactory;
-import com.p6spy.engine.outage.P6OutageLoadableOptions;
-import com.p6spy.engine.outage.P6OutageOptions;
+import com.p6spy.engine.modules.logging.Category;
+import com.p6spy.engine.modules.logging.P6LogFactory;
+import com.p6spy.engine.modules.logging.P6LogLoadableOptions;
+import com.p6spy.engine.modules.logging.P6LogOptions;
+import com.p6spy.engine.modules.outage.P6OutageFactory;
+import com.p6spy.engine.modules.outage.P6OutageLoadableOptions;
+import com.p6spy.engine.modules.outage.P6OutageOptions;
 import com.p6spy.engine.spy.*;
 import com.p6spy.engine.spy.appender.CustomLineFormat;
 import com.p6spy.engine.spy.appender.FileLogger;

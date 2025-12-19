@@ -20,7 +20,7 @@ package com.p6spy.engine.spy.option;
 import com.p6spy.engine.common.ClassHasher;
 import com.p6spy.engine.common.CustomHashedHashSet;
 import com.p6spy.engine.common.P6Util;
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 import com.p6spy.engine.spy.P6Factory;
 
 import java.util.*;

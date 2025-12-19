@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy;
 
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 import com.p6spy.engine.test.P6TestFramework;
 import com.p6spy.engine.test.P6TestOptions;
 import org.junit.Assert;

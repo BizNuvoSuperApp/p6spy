@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy.appender;
 
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

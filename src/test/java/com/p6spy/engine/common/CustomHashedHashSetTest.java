@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.common;
 
-import com.p6spy.engine.logging.P6LogFactory;
+import com.p6spy.engine.modules.logging.P6LogFactory;
 import com.p6spy.engine.spy.P6Factory;
 import com.p6spy.engine.spy.P6SpyFactory;
 import org.junit.Assert;

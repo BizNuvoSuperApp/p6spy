@@ -17,7 +17,7 @@
  */
 package com.p6spy.engine.spy.appender;
 
-import com.p6spy.engine.logging.Category;
+import com.p6spy.engine.modules.logging.Category;
 
 /**
  * SQL batch file logger Private: (?) No Appender that writes a trace of JDBC activity into an SQL
