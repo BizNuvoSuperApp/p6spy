@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,34 +36,34 @@ import com.p6spy.engine.logging.Category;
  * patch or write your own :)
  */
 public class BatchFileLogger extends FileLogger {
-  public static final char BATCH_SEPARATOR = ';';
-  private boolean endOfStatement = true;
+    public static final char BATCH_SEPARATOR = ';';
+    private boolean endOfStatement = true;
 
-  @Override
-  public void logException(Exception e) {
-  }
-
-  @Override
-  public void logSQL(int connectionId, String now, long elapsed, Category category, String prepared, String sql, String url) {
-    if (endOfStatement) {
-      getStream().println(BATCH_SEPARATOR);
+    @Override
+    public void logException(Exception e) {
     }
-    if (Category.STATEMENT.equals(category)) {
-      String actual = null == sql || 0 == sql.length() ? prepared : sql;
-      getStream().print(actual);
-      endOfStatement = true;
-    } else if (Category.COMMIT.equals(category) || Category.ROLLBACK.equals(category)) {
-      getStream().print(category);
-      endOfStatement = true;
-    } else {
-      getStream().println("-- " + category);
-      endOfStatement = false;
-    }
-    getStream().flush();
-  }
 
-  @Override
-  public void logText(String text) {
-  }
+    @Override
+    public void logSQL(int connectionId, String now, long elapsed, Category category, String prepared, String sql, String url) {
+        if (endOfStatement) {
+            getStream().println(BATCH_SEPARATOR);
+        }
+        if (Category.STATEMENT.equals(category)) {
+            String actual = null == sql || 0 == sql.length() ? prepared : sql;
+            getStream().print(actual);
+            endOfStatement = true;
+        } else if (Category.COMMIT.equals(category) || Category.ROLLBACK.equals(category)) {
+            getStream().print(category);
+            endOfStatement = true;
+        } else {
+            getStream().println("-- " + category);
+            endOfStatement = false;
+        }
+        getStream().flush();
+    }
+
+    @Override
+    public void logText(String text) {
+    }
 
 }

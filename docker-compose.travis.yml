@@ -47,16 +47,16 @@ services:
   #     retries: 1800 # 2s*1800 = 3600s = 60min
 
   firebird:
-      image: jacobalberty/firebird:2.5-sc
-      environment:
-        ISC_PASSWORD: masterkey
-        FIREBIRD_USER: travis
-        FIREBIRD_PASSWORD: travis
-        FIREBIRD_DATABASE: p6spy.gdb
-      ports:
-        - "3050:3050"
-      healthcheck:
-        test: /bin/sh -c "[ -f /firebird/data/p6spy.gdb ]"
-        interval: 2s
-        timeout: 10s
-        retries: 1800 # 2s*1800 = 3600s = 60min
+    image: jacobalberty/firebird:2.5-sc
+    environment:
+      ISC_PASSWORD: masterkey
+      FIREBIRD_USER: travis
+      FIREBIRD_PASSWORD: travis
+      FIREBIRD_DATABASE: p6spy.gdb
+    ports:
+      - "3050:3050"
+    healthcheck:
+      test: /bin/sh -c "[ -f /firebird/data/p6spy.gdb ]"
+      interval: 2s
+      timeout: 10s
+      retries: 1800 # 2s*1800 = 3600s = 60min

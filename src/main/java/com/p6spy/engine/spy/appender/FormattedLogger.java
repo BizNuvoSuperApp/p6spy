@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,22 +24,22 @@ import com.p6spy.engine.logging.Category;
  */
 public abstract class FormattedLogger implements P6Logger {
 
-  protected MessageFormattingStrategy strategy;
+    protected MessageFormattingStrategy strategy;
 
-  protected FormattedLogger() {
-    strategy = new SingleLineFormat();
-  }
+    protected FormattedLogger() {
+        strategy = new SingleLineFormat();
+    }
 
-  @Override
-  public void logSQL(int connectionId, String now, long elapsed, Category category, String prepared, String sql, String url) {
-    logText(strategy.formatMessage(connectionId, now, elapsed, category.toString(), prepared, sql, url));
-  }
+    @Override
+    public void logSQL(int connectionId, String now, long elapsed, Category category, String prepared, String sql, String url) {
+        logText(strategy.formatMessage(connectionId, now, elapsed, category.toString(), prepared, sql, url));
+    }
 
-  /**
-   * Sets the strategy implementation to use for formatting log message.  If not set, this will default to {@link SingleLineFormat}
-   */
-  public void setStrategy(final MessageFormattingStrategy strategy) {
-    this.strategy = strategy;
-  }
-  
+    /**
+     * Sets the strategy implementation to use for formatting log message.  If not set, this will default to {@link SingleLineFormat}
+     */
+    public void setStrategy(final MessageFormattingStrategy strategy) {
+        this.strategy = strategy;
+    }
+
 }

@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,66 +28,66 @@ import java.sql.SQLException;
  */
 public class OutageJdbcEventListener extends SimpleJdbcEventListener {
 
-  public static final OutageJdbcEventListener INSTANCE = new OutageJdbcEventListener();
+    public static final OutageJdbcEventListener INSTANCE = new OutageJdbcEventListener();
 
-  private OutageJdbcEventListener() {
-  }
-
-  @Override
-  public void onBeforeCommit(ConnectionInformation connectionInformation) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "commit", "", "", connectionInformation.getUrl());
+    private OutageJdbcEventListener() {
     }
-  }
 
-  @Override
-  public void onAfterCommit(ConnectionInformation connectionInformation, long timeElapsedNanos, SQLException e) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.unregisterInvocation(this);
+    @Override
+    public void onBeforeCommit(ConnectionInformation connectionInformation) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "commit", "", "", connectionInformation.getUrl());
+        }
     }
-  }
 
-  @Override
-  public void onBeforeRollback(ConnectionInformation connectionInformation) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "rollback", "", "", connectionInformation.getUrl());
+    @Override
+    public void onAfterCommit(ConnectionInformation connectionInformation, long timeElapsedNanos, SQLException e) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.unregisterInvocation(this);
+        }
     }
-  }
 
-  @Override
-  public void onAfterRollback(ConnectionInformation connectionInformation, long timeElapsedNanos, SQLException e) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.unregisterInvocation(this);
+    @Override
+    public void onBeforeRollback(ConnectionInformation connectionInformation) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "rollback", "", "", connectionInformation.getUrl());
+        }
     }
-  }
 
-  @Override
-  public void onBeforeAnyAddBatch(StatementInformation statementInformation) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "batch",
-        statementInformation.getSqlWithValues(), statementInformation.getStatementQuery(), statementInformation.getConnectionInformation().getUrl());
+    @Override
+    public void onAfterRollback(ConnectionInformation connectionInformation, long timeElapsedNanos, SQLException e) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.unregisterInvocation(this);
+        }
     }
-  }
 
-  @Override
-  public void onAfterAnyAddBatch(StatementInformation statementInformation, long timeElapsedNanos, SQLException e) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.unregisterInvocation(this);
+    @Override
+    public void onBeforeAnyAddBatch(StatementInformation statementInformation) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "batch",
+                    statementInformation.getSqlWithValues(), statementInformation.getStatementQuery(), statementInformation.getConnectionInformation().getUrl());
+        }
     }
-  }
 
-  @Override
-  public void onBeforeAnyExecute(StatementInformation statementInformation) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "statement",
-        statementInformation.getSqlWithValues(), statementInformation.getStatementQuery(), statementInformation.getConnectionInformation().getUrl());
+    @Override
+    public void onAfterAnyAddBatch(StatementInformation statementInformation, long timeElapsedNanos, SQLException e) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.unregisterInvocation(this);
+        }
     }
-  }
 
-  @Override
-  public void onAfterAnyExecute(StatementInformation statementInformation, long timeElapsedNanos, SQLException e) {
-    if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
-      P6OutageDetector.INSTANCE.unregisterInvocation(this);
+    @Override
+    public void onBeforeAnyExecute(StatementInformation statementInformation) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.registerInvocation(this, System.nanoTime(), "statement",
+                    statementInformation.getSqlWithValues(), statementInformation.getStatementQuery(), statementInformation.getConnectionInformation().getUrl());
+        }
     }
-  }
+
+    @Override
+    public void onAfterAnyExecute(StatementInformation statementInformation, long timeElapsedNanos, SQLException e) {
+        if (P6OutageOptions.getActiveInstance().getOutageDetection()) {
+            P6OutageDetector.INSTANCE.unregisterInvocation(this);
+        }
+    }
 }

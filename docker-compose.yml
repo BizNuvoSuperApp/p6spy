@@ -30,11 +30,11 @@ services:
   #     retries: 1800 # 2s*1800 = 3600s = 60min
 
   postgresql:
-    build:  ./script/docker/postgres
+    build: ./script/docker/postgres
     environment:
-        POSTGRES_USER: travis
-        POSTGRES_PASSWORD: ''
-        POSTGRES_DB: p6spy
+      POSTGRES_USER: travis
+      POSTGRES_PASSWORD: ''
+      POSTGRES_DB: p6spy
     ports:
       - "5432:5432"
     healthcheck:
@@ -46,10 +46,10 @@ services:
   mysql:
     image: mysql:5.7.18
     environment:
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
-        MYSQL_DATABASE: p6spy
-        MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: p6spy
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
     ports:
       - "3306:3306"
     volumes:
@@ -123,4 +123,4 @@ services:
   sonarqube:
     image: sonarqube:6.7.5-alpine
     ports:
-    - "9000:9000"
+      - "9000:9000"

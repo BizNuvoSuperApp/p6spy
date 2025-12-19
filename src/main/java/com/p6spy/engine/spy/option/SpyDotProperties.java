@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,116 +31,117 @@ import java.util.Properties;
 
 public class SpyDotProperties implements P6OptionsSource {
 
-  public static final String OPTIONS_FILE_PROPERTY = "spy.properties";
-  public static final String OPTIONS_FILE_CHARSET_PROPERTY = OPTIONS_FILE_PROPERTY.concat(".charset");
-  public static final String DEFAULT_OPTIONS_FILE = OPTIONS_FILE_PROPERTY;
+    public static final String OPTIONS_FILE_PROPERTY = "spy.properties";
+    public static final String OPTIONS_FILE_CHARSET_PROPERTY = OPTIONS_FILE_PROPERTY.concat(".charset");
+    public static final String DEFAULT_OPTIONS_FILE = OPTIONS_FILE_PROPERTY;
 
-  private final long lastModified;
+    private final long lastModified;
 
-  private SpyDotPropertiesReloader reloader;
+    private SpyDotPropertiesReloader reloader;
 
-  private final Map<String, String> options;
+    private final Map<String, String> options;
 
-  /**
-   * Creates a new instance and loads the properties file if found.
-   *
-   * @throws IOException
-   */
-  public SpyDotProperties() throws IOException {
-    URL url = locate();
+    /**
+     * Creates a new instance and loads the properties file if found.
+     *
+     * @throws IOException
+     */
+    public SpyDotProperties() throws IOException {
+        URL url = locate();
 
-    if (null == url) {
-      // no config file preset => skip props loading
-      lastModified = -1;
-      options = null;
-      return;
-    }
+        if (null == url) {
+            // no config file preset => skip props loading
+            lastModified = -1;
+            options = null;
+            return;
+        }
 
-    lastModified = lastModified();
+        lastModified = lastModified();
 
-    InputStream in = null;
-    try {
-      in = url.openStream();
-      final Properties properties = new Properties();
-
-      String charsetName = System.getProperty(OPTIONS_FILE_CHARSET_PROPERTY, Charset.defaultCharset().name());
-      properties.load(new InputStreamReader(in, charsetName));
-      options = P6Util.getPropertiesMap(properties);
-    } finally {
-      if (null != in) {
+        InputStream in = null;
         try {
-          in.close();
-        } catch( Exception e ) {
+            in = url.openStream();
+            final Properties properties = new Properties();
+
+            String charsetName = System.getProperty(OPTIONS_FILE_CHARSET_PROPERTY, Charset.defaultCharset().name());
+            properties.load(new InputStreamReader(in, charsetName));
+            options = P6Util.getPropertiesMap(properties);
+        } finally {
+            if (null != in) {
+                try {
+                    in.close();
+                } catch (Exception e) {
+                }
+            }
         }
-      }
     }
-  }
 
 
-  /**
-   * Determines if the file has been modified since it was loaded
-   *
-   * @return true if modified, false otherwise
-   */
-  public boolean isModified() {
-    return lastModified() != lastModified;
-  }
+    /**
+     * Determines if the file has been modified since it was loaded
+     *
+     * @return true if modified, false otherwise
+     */
+    public boolean isModified() {
+        return lastModified() != lastModified;
+    }
 
-  private long lastModified() {
-    long lastMod = -1;
-    URLConnection con = null;
-    URL url = locate();
-    if( url != null ) {
-      try {
-        con = url.openConnection();
-        lastMod = con.getLastModified();
-      } catch (IOException e) {
-        // ignore
-      } finally {
-        if( con != null ) {
-          // getLastModified opens an input stream if it is a file
-          // the inputStream must be closed manually!
-          InputStream in = null;
-          try {
-             in = con.getInputStream();
-          } catch (IOException e) {
-          }
-          if( in != null ) {
+    private long lastModified() {
+        long lastMod = -1;
+        URLConnection con = null;
+        URL url = locate();
+        if (url != null) {
             try {
-              in.close();
-            } catch (IOException e) {}
-          }
+                con = url.openConnection();
+                lastMod = con.getLastModified();
+            } catch (IOException e) {
+                // ignore
+            } finally {
+                if (con != null) {
+                    // getLastModified opens an input stream if it is a file
+                    // the inputStream must be closed manually!
+                    InputStream in = null;
+                    try {
+                        in = con.getInputStream();
+                    } catch (IOException e) {
+                    }
+                    if (in != null) {
+                        try {
+                            in.close();
+                        } catch (IOException e) {
+                        }
+                    }
 
+                }
+            }
         }
-      }
-    }
-    return lastMod;
-  }
-
-  private URL locate() {
-    String propsFileName = System.getProperty(OPTIONS_FILE_PROPERTY, DEFAULT_OPTIONS_FILE);
-    if (null == propsFileName || propsFileName.isEmpty()) {
-      propsFileName = DEFAULT_OPTIONS_FILE;
+        return lastMod;
     }
 
-    return P6Util.locateFile(propsFileName);
-  }
+    private URL locate() {
+        String propsFileName = System.getProperty(OPTIONS_FILE_PROPERTY, DEFAULT_OPTIONS_FILE);
+        if (null == propsFileName || propsFileName.isEmpty()) {
+            propsFileName = DEFAULT_OPTIONS_FILE;
+        }
 
-  @Override
-  public Map<String, String> getOptions() {
-    return options;
-  }
-
-
-  @Override
-  public void preDestroy(P6ModuleManager p6moduleManager) {
-    if (reloader != null) {
-      reloader.kill(p6moduleManager);
+        return P6Util.locateFile(propsFileName);
     }
-  }
 
-  @Override
-  public void postInit(P6ModuleManager p6moduleManager) {
-    reloader = new SpyDotPropertiesReloader(this, p6moduleManager);
-  }
+    @Override
+    public Map<String, String> getOptions() {
+        return options;
+    }
+
+
+    @Override
+    public void preDestroy(P6ModuleManager p6moduleManager) {
+        if (reloader != null) {
+            reloader.kill(p6moduleManager);
+        }
+    }
+
+    @Override
+    public void postInit(P6ModuleManager p6moduleManager) {
+        reloader = new SpyDotPropertiesReloader(this, p6moduleManager);
+    }
 }

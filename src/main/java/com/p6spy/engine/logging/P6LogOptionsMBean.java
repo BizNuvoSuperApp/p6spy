@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,40 +21,40 @@ import java.util.Set;
 
 public interface P6LogOptionsMBean {
 
-  void setExclude(String exclude);
+    void setExclude(String exclude);
 
-  String getExclude();
+    String getExclude();
 
-  void setExcludecategories(String excludecategories);
+    void setExcludecategories(String excludecategories);
 
-  String getExcludecategories();
+    String getExcludecategories();
 
-  void setExcludebinary(boolean excludebinary);
+    void setExcludebinary(boolean excludebinary);
 
-  boolean getExcludebinary();
-  
-  void setFilter(boolean filter);
+    boolean getExcludebinary();
 
-  boolean getFilter();
+    void setFilter(boolean filter);
 
-  void setInclude(String include);
+    boolean getFilter();
 
-  String getInclude();
+    void setInclude(String include);
 
-  String getSQLExpression();
+    String getInclude();
 
-  void setSQLExpression(String sqlexpression);
-  
-  void unSetSQLExpression();
+    String getSQLExpression();
 
-  void setExecutionThreshold(long executionThreshold);
+    void setSQLExpression(String sqlexpression);
 
-  long getExecutionThreshold();
+    void unSetSQLExpression();
 
-  Set<String> getIncludeList();
+    void setExecutionThreshold(long executionThreshold);
 
-  Set<String> getExcludeList();
+    long getExecutionThreshold();
 
-  Set<Category> getExcludeCategoriesSet();
+    Set<String> getIncludeList();
+
+    Set<String> getExcludeList();
+
+    Set<Category> getExcludeCategoriesSet();
 
 }

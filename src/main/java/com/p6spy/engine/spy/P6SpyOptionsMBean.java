@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,131 +21,131 @@ import java.util.Set;
 
 public interface P6SpyOptionsMBean {
 
-  /**
-   * Reloads the whole configuration. 
-   */
-  void reload();
-  
-  void setAutoflush(boolean autoflush);
+    /**
+     * Reloads the whole configuration.
+     */
+    void reload();
 
-  boolean getAutoflush();
+    void setAutoflush(boolean autoflush);
 
-  String getDriverlist();
+    boolean getAutoflush();
 
-  void setDriverlist(String driverlist);
+    String getDriverlist();
 
-  Set<String> getDriverNames();
+    void setDriverlist(String driverlist);
 
-  boolean getReloadProperties();
+    Set<String> getDriverNames();
 
-  void setReloadProperties(boolean reloadproperties);
+    boolean getReloadProperties();
 
-  long getReloadPropertiesInterval();
+    void setReloadProperties(boolean reloadproperties);
 
-  void setReloadPropertiesInterval(long reloadpropertiesinterval);
+    long getReloadPropertiesInterval();
 
-  void setJNDIContextFactory(String jndicontextfactory);
+    void setReloadPropertiesInterval(long reloadpropertiesinterval);
 
-  String getJNDIContextFactory();
-  
-  void unSetJNDIContextFactory();
+    void setJNDIContextFactory(String jndicontextfactory);
 
-  void setJNDIContextProviderURL(String jndicontextproviderurl);
-  
-  void unSetJNDIContextProviderURL();
+    String getJNDIContextFactory();
 
-  String getJNDIContextProviderURL();
+    void unSetJNDIContextFactory();
 
-  void setJNDIContextCustom(String jndicontextcustom);
-  
-  void unSetJNDIContextCustom();
+    void setJNDIContextProviderURL(String jndicontextproviderurl);
 
-  String getJNDIContextCustom();
+    void unSetJNDIContextProviderURL();
 
-  void setRealDataSource(String realdatasource);
-  
-  void unSetRealDataSource();
+    String getJNDIContextProviderURL();
 
-  String getRealDataSource();
+    void setJNDIContextCustom(String jndicontextcustom);
 
-  void setRealDataSourceClass(String realdatasourceclass);
-  
-  void unSetRealDataSourceClass();
+    void unSetJNDIContextCustom();
 
-  String getRealDataSourceClass();
+    String getJNDIContextCustom();
 
-  void setRealDataSourceProperties(String realdatasourceproperties);
-  
-  void unSetRealDataSourceProperties();
+    void setRealDataSource(String realdatasource);
 
-  String getRealDataSourceProperties();
+    void unSetRealDataSource();
 
-  String getModulelist();
+    String getRealDataSource();
 
-  void setModulelist(String modulelist);
+    void setRealDataSourceClass(String realdatasourceclass);
 
-  Set<String> getModuleNames();
+    void unSetRealDataSourceClass();
 
-  String getDatabaseDialectDateFormat();
+    String getRealDataSourceClass();
 
-  void setDatabaseDialectDateFormat(String databaseDialectDateFormat);
+    void setRealDataSourceProperties(String realdatasourceproperties);
 
-  String getDatabaseDialectTimestampFormat();
+    void unSetRealDataSourceProperties();
 
-  void setDatabaseDialectTimestampFormat(String databaseDialectTimestampFormat);
+    String getRealDataSourceProperties();
 
-  String getDatabaseDialectBooleanFormat();
+    String getModulelist();
 
-  void setDatabaseDialectBooleanFormat(String databaseDialectBooleanFormat);
-  
-  /**
-   * Gets the class name of the database dialect binary formatter.
-   */
-  String getDatabaseDialectBinaryFormat();
+    void setModulelist(String modulelist);
 
-  /**
-   * Sets the class name of the database dialect binary formatter.
-   */
-  void setDatabaseDialectBinaryFormat(String className);
-  
-  String getCustomLogMessageFormat();
+    Set<String> getModuleNames();
 
-  void setCustomLogMessageFormat(String customLogMessageFormat);
+    String getDatabaseDialectDateFormat();
 
-  void setAppend(boolean append);
+    void setDatabaseDialectDateFormat(String databaseDialectDateFormat);
 
-  boolean getAppend();
+    String getDatabaseDialectTimestampFormat();
 
-  void setLogfile(String logfile);
+    void setDatabaseDialectTimestampFormat(String databaseDialectTimestampFormat);
 
-  String getLogfile();
+    String getDatabaseDialectBooleanFormat();
 
-  String getAppender();
+    void setDatabaseDialectBooleanFormat(String databaseDialectBooleanFormat);
 
-  void setAppender(String className);
+    /**
+     * Gets the class name of the database dialect binary formatter.
+     */
+    String getDatabaseDialectBinaryFormat();
 
-  void setDateformat(String dateformat);
+    /**
+     * Sets the class name of the database dialect binary formatter.
+     */
+    void setDatabaseDialectBinaryFormat(String className);
 
-  String getDateformat();
+    String getCustomLogMessageFormat();
 
-  boolean getStackTrace();
+    void setCustomLogMessageFormat(String customLogMessageFormat);
 
-  void setStackTrace(boolean stacktrace);
-  
-  String getStackTraceClass();
+    void setAppend(boolean append);
 
-  void setStackTraceClass(String stacktraceclass);
+    boolean getAppend();
 
-  String getLogMessageFormat();
+    void setLogfile(String logfile);
 
-  void setLogMessageFormat(String logMessageFormatter);
-  
-  boolean getJmx();
-  
-  void setJmx(boolean jmx);
-  
-  String getJmxPrefix();
-  
-  void setJmxPrefix(String jmxPrefix);
+    String getLogfile();
+
+    String getAppender();
+
+    void setAppender(String className);
+
+    void setDateformat(String dateformat);
+
+    String getDateformat();
+
+    boolean getStackTrace();
+
+    void setStackTrace(boolean stacktrace);
+
+    String getStackTraceClass();
+
+    void setStackTraceClass(String stacktraceclass);
+
+    String getLogMessageFormat();
+
+    void setLogMessageFormat(String logMessageFormatter);
+
+    boolean getJmx();
+
+    void setJmx(boolean jmx);
+
+    String getJmxPrefix();
+
+    void setJmxPrefix(String jmxPrefix);
 
 }

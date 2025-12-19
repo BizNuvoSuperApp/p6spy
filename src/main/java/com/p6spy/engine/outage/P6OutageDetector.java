@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,12 +17,12 @@
  */
 package com.p6spy.engine.outage;
 
+import com.p6spy.engine.common.P6LogQuery;
+import com.p6spy.engine.logging.Category;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
-
-import com.p6spy.engine.common.P6LogQuery;
-import com.p6spy.engine.logging.Category;
 
 /**
  * This class is a singleton. Since P6Spy is normally loaded by the system
@@ -46,9 +46,9 @@ import com.p6spy.engine.logging.Category;
  * okay.
  */
 public enum P6OutageDetector implements Runnable {
-	
-	INSTANCE;
-	
+
+    INSTANCE;
+
     private ConcurrentMap<Object, InvocationInfo> pendingMessages;
 
     // flag that indicates that the thread should stop running
@@ -56,17 +56,17 @@ public enum P6OutageDetector implements Runnable {
 
     /** Creates new P6OutageDetector */
     private P6OutageDetector() {
-    	pendingMessages = new ConcurrentHashMap<Object, InvocationInfo>();
-    	
-    	// create and run the auxilliary thread
+        pendingMessages = new ConcurrentHashMap<Object, InvocationInfo>();
+
+        // create and run the auxilliary thread
         // make it a deamon thread so it won't prevent the server from
         // shutting down when it wants to.
-    	ThreadGroup group = new ThreadGroup("P6SpyThreadGroup");
+        ThreadGroup group = new ThreadGroup("P6SpyThreadGroup");
         group.setDaemon(true);
         Thread outageThread = new Thread(group, this, "P6SpyOutageThread");
-        outageThread.setDaemon(true);      
+        outageThread.setDaemon(true);
         outageThread.start();
-    	
+
         P6LogQuery.debug("P6Spy - P6OutageDetector has been invoked.");
         P6LogQuery.debug("P6Spy - P6OutageOptions.getOutageDetectionIntervalMS() = " + P6OutageOptions.getActiveInstance().getOutageDetectionIntervalMS());
     }

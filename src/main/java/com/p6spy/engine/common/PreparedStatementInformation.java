@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,95 +28,95 @@ import java.util.Map;
  * @since 09/2013
  */
 public class PreparedStatementInformation extends StatementInformation implements Loggable {
-  private final Map<Integer, Value> parameterValues = new HashMap<Integer, Value>();
+    private final Map<Integer, Value> parameterValues = new HashMap<Integer, Value>();
 
-  public PreparedStatementInformation(final ConnectionInformation connectionInformation, String query) {
-    super(connectionInformation);
-    setStatementQuery(query);
-  }
-
-  /**
-   * Generates the query for the prepared statement with all parameter placeholders
-   * replaced with the actual parameter values
-   *
-   * @return the SQL
-   */
-  @Override
-  public String getSqlWithValues() {
-    final StringBuilder sb = new StringBuilder();
-    final String statementQuery = getStatementQuery();
-
-    // iterate over the characters in the query replacing the parameter placeholders
-    // with the actual values
-    int currentParameter = 0;
-
-    // Skip replacing the parameter placeholders
-    // when the parameter placeholder is singleQuoted or commented.
-    boolean isSingleQuoted = false;
-    boolean isSingleCommented = false;
-    boolean isMultiLineCommented = false;
-
-    for( int pos = 0; pos < statementQuery.length(); pos ++) {
-      char character = statementQuery.charAt(pos);
-
-      if (character == '\'') {
-        isSingleQuoted = !isSingleQuoted;
-      }
-
-      if (!isSingleCommented) {
-        if (character == '-' && (pos + 1 < statementQuery.length()) && statementQuery.charAt(pos + 1) == '-') {
-          isSingleCommented = true;
-        }
-      } else {
-        if (character == '\n') {
-          isSingleCommented = false;
-        }
-      }
-
-      if (!isMultiLineCommented) {
-        if (character == '/' && (pos + 1 < statementQuery.length()) && statementQuery.charAt(pos + 1) == '*') {
-          isMultiLineCommented = true;
-        }
-      } else {
-        if (character == '*' && (pos + 1 < statementQuery.length()) && statementQuery.charAt(pos + 1) == '/') {
-          isMultiLineCommented = false;
-        }
-      }
-
-      if( statementQuery.charAt(pos) == '?' && currentParameter <= parameterValues.size() && !isSingleQuoted && !isSingleCommented && !isMultiLineCommented) {
-        // replace with parameter value
-        Value value = parameterValues.get(currentParameter);
-        sb.append(value != null ? value.toString() : new Value().toString());
-        currentParameter++;
-      } else {
-        sb.append(character);
-      }
+    public PreparedStatementInformation(final ConnectionInformation connectionInformation, String query) {
+        super(connectionInformation);
+        setStatementQuery(query);
     }
 
-    return sb.toString();
-  }
+    /**
+     * Generates the query for the prepared statement with all parameter placeholders
+     * replaced with the actual parameter values
+     *
+     * @return the SQL
+     */
+    @Override
+    public String getSqlWithValues() {
+        final StringBuilder sb = new StringBuilder();
+        final String statementQuery = getStatementQuery();
 
-  /**
-   * Records the value of a parameter.
-   * @param position the position of the parameter (starts with 1 not 0)
-   * @param value the value of the parameter
-   */
-  public void setParameterValue(final int position, final Object value) {
-    parameterValues.put(position - 1, new Value(value));
-  }
+        // iterate over the characters in the query replacing the parameter placeholders
+        // with the actual values
+        int currentParameter = 0;
 
-  /**
-   * Records the value of a parameter.
-   * @param position the position of the parameter (starts with 1 not 0)
-   * @param value the value of the parameter
-   * @param timezoneHolder the Calendar holding the timezone information for temporal values (Dates and Timestamps)
-   */
-  public void setParameterValue(final int position, final Object value, final Calendar timezoneHolder) {
-    parameterValues.put(position - 1, new Value(value, timezoneHolder));
-  }
+        // Skip replacing the parameter placeholders
+        // when the parameter placeholder is singleQuoted or commented.
+        boolean isSingleQuoted = false;
+        boolean isSingleCommented = false;
+        boolean isMultiLineCommented = false;
 
-  protected Map<Integer, Value> getParameterValues() {
-    return parameterValues;
-  }
+        for (int pos = 0; pos < statementQuery.length(); pos++) {
+            char character = statementQuery.charAt(pos);
+
+            if (character == '\'') {
+                isSingleQuoted = !isSingleQuoted;
+            }
+
+            if (!isSingleCommented) {
+                if (character == '-' && (pos + 1 < statementQuery.length()) && statementQuery.charAt(pos + 1) == '-') {
+                    isSingleCommented = true;
+                }
+            } else {
+                if (character == '\n') {
+                    isSingleCommented = false;
+                }
+            }
+
+            if (!isMultiLineCommented) {
+                if (character == '/' && (pos + 1 < statementQuery.length()) && statementQuery.charAt(pos + 1) == '*') {
+                    isMultiLineCommented = true;
+                }
+            } else {
+                if (character == '*' && (pos + 1 < statementQuery.length()) && statementQuery.charAt(pos + 1) == '/') {
+                    isMultiLineCommented = false;
+                }
+            }
+
+            if (statementQuery.charAt(pos) == '?' && currentParameter <= parameterValues.size() && !isSingleQuoted && !isSingleCommented && !isMultiLineCommented) {
+                // replace with parameter value
+                Value value = parameterValues.get(currentParameter);
+                sb.append(value != null ? value.toString() : new Value().toString());
+                currentParameter++;
+            } else {
+                sb.append(character);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     * Records the value of a parameter.
+     * @param position the position of the parameter (starts with 1 not 0)
+     * @param value the value of the parameter
+     */
+    public void setParameterValue(final int position, final Object value) {
+        parameterValues.put(position - 1, new Value(value));
+    }
+
+    /**
+     * Records the value of a parameter.
+     * @param position the position of the parameter (starts with 1 not 0)
+     * @param value the value of the parameter
+     * @param timezoneHolder the Calendar holding the timezone information for temporal values (Dates and Timestamps)
+     */
+    public void setParameterValue(final int position, final Object value, final Calendar timezoneHolder) {
+        parameterValues.put(position - 1, new Value(value, timezoneHolder));
+    }
+
+    protected Map<Integer, Value> getParameterValues() {
+        return parameterValues;
+    }
 
 }

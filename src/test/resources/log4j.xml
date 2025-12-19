@@ -22,27 +22,27 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false" reset="true">
 
-  <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
-    <param name="Target" value="System.out" />
-    <layout class="org.apache.log4j.PatternLayout">
-      <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c.%M] %m%n" />
-    </layout>
-  </appender>
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c.%M] %m%n"/>
+        </layout>
+    </appender>
 
 
-  <category name="com.p6spy">
-    <priority value="INFO" />
-  </category>
-  
-  <!-- restrict liquibase logging (to fit travis-ci console output limits) -->
-  <category name="liquibase">
-    <priority value="WARN" />
-  </category>
+    <category name="com.p6spy">
+        <priority value="INFO"/>
+    </category>
 
-  <root>
-    <priority value="INFO" />
-    <appender-ref ref="CONSOLE" />
-  </root>
+    <!-- restrict liquibase logging (to fit travis-ci console output limits) -->
+    <category name="liquibase">
+        <priority value="WARN"/>
+    </category>
+
+    <root>
+        <priority value="INFO"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
 
 </log4j:configuration>
 

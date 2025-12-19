@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,43 +17,43 @@
  */
 package com.p6spy.engine.test;
 
-import javax.sql.XADataSource;
-
 import com.p6spy.engine.spy.P6LoadableOptions;
+
+import javax.sql.XADataSource;
 
 public interface P6TestLoadableOptions extends P6LoadableOptions, P6TestOptionsMBean {
 
-  // no need to expose these via MBean => keep them here
-  String getUrl();
+    // no need to expose these via MBean => keep them here
+    String getUrl();
 
-  void setUrl(String url);
+    void setUrl(String url);
 
-  String getUser();
+    String getUser();
 
-  void setUser(String user);
+    void setUser(String user);
 
-  String getPassword();
+    String getPassword();
 
-  void setPassword(String password);
+    void setPassword(String password);
 
-  String getUrl2();
+    String getUrl2();
 
-  void setUrl2(String url2);
+    void setUrl2(String url2);
 
-  String getUser2();
+    String getUser2();
 
-  void setUser2(String user2);
+    void setUser2(String user2);
 
-  String getPassword2();
+    String getPassword2();
 
-  void setPassword2(String password2);
+    void setPassword2(String password2);
 
-  XADataSource getXaDataSource();
+    XADataSource getXaDataSource();
 
-  void setXaDataSource(String xaDataSource);
+    void setXaDataSource(String xaDataSource);
 
-  String getValidationQuery();
+    String getValidationQuery();
 
-  void setValidationQuery(String validationQuery);
+    void setValidationQuery(String validationQuery);
 
 }

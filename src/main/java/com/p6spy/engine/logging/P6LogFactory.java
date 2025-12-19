@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,23 +27,23 @@ import java.util.ServiceLoader;
 
 public class P6LogFactory implements P6Factory {
 
-  private static ServiceLoader<LoggingEventListener> customLoggingEventListener = ServiceLoader
-    .load(LoggingEventListener.class, P6LogFactory.class.getClassLoader());
+    private static ServiceLoader<LoggingEventListener> customLoggingEventListener = ServiceLoader
+            .load(LoggingEventListener.class, P6LogFactory.class.getClassLoader());
 
-  @Override
-  public JdbcEventListener getJdbcEventListener() {
-    // return first custom implementation
-    Iterator<LoggingEventListener> iterator = customLoggingEventListener.iterator();
-    if (iterator.hasNext()) {
-      return iterator.next();
+    @Override
+    public JdbcEventListener getJdbcEventListener() {
+        // return first custom implementation
+        Iterator<LoggingEventListener> iterator = customLoggingEventListener.iterator();
+        if (iterator.hasNext()) {
+            return iterator.next();
+        }
+        // if none found, return default impl
+        return LoggingEventListener.INSTANCE;
     }
-    // if none found, return default impl
-    return LoggingEventListener.INSTANCE;
-  }
 
-  @Override
-  public P6LoadableOptions getOptions(P6OptionsRepository optionsRepository) {
-    return new P6LogOptions(optionsRepository);
-  }
+    @Override
+    public P6LoadableOptions getOptions(P6OptionsRepository optionsRepository) {
+        return new P6LogOptions(optionsRepository);
+    }
 
 }

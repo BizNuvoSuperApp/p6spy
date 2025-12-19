@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,24 +17,23 @@
  */
 package com.p6spy.engine.spy;
 
-import java.sql.SQLException;
-
 import javax.sql.PooledConnection;
 import javax.sql.XAConnection;
 import javax.transaction.xa.XAResource;
+import java.sql.SQLException;
 
 public class P6XAConnection extends P6PooledConnection implements XAConnection {
 
-  public P6XAConnection(PooledConnection connection, JdbcEventListenerFactory jdbcEventListenerFactory) {
-    super(connection, jdbcEventListenerFactory);
-    
-    if (!(connection instanceof XAConnection)) {
-      throw new IllegalArgumentException("Argument is supposed to be of type XAConnection, but is rather:" + connection);
-    }
-  }
+    public P6XAConnection(PooledConnection connection, JdbcEventListenerFactory jdbcEventListenerFactory) {
+        super(connection, jdbcEventListenerFactory);
 
-  @Override
-  public XAResource getXAResource() throws SQLException {
-    return ((XAConnection) passthru).getXAResource();
-  }
+        if (!(connection instanceof XAConnection)) {
+            throw new IllegalArgumentException("Argument is supposed to be of type XAConnection, but is rather:" + connection);
+        }
+    }
+
+    @Override
+    public XAResource getXAResource() throws SQLException {
+        return ((XAConnection) passthru).getXAResource();
+    }
 }

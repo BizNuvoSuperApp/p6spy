@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,11 +17,11 @@
  */
 package com.p6spy.engine.spy;
 
-import java.sql.Connection;
-
 import com.p6spy.engine.common.ConnectionInformation;
 import com.p6spy.engine.event.JdbcEventListener;
 import com.p6spy.engine.wrapper.ConnectionWrapper;
+
+import java.sql.Connection;
 
 /**
  * @author Quinton McCombs
@@ -30,16 +30,16 @@ import com.p6spy.engine.wrapper.ConnectionWrapper;
  */
 public class P6Core {
 
-  @SuppressWarnings("resource")
-  public static Connection wrapConnection(Connection realConnection, ConnectionInformation connectionInformation) {
-    if (realConnection == null) {
-      return null;
+    @SuppressWarnings("resource")
+    public static Connection wrapConnection(Connection realConnection, ConnectionInformation connectionInformation) {
+        if (realConnection == null) {
+            return null;
+        }
+        return ConnectionWrapper.wrap(realConnection, JdbcEventListenerFactoryLoader.load().createJdbcEventListener(), connectionInformation);
     }
-    return ConnectionWrapper.wrap(realConnection, JdbcEventListenerFactoryLoader.load().createJdbcEventListener(), connectionInformation);
-  }
 
-  public static JdbcEventListener getJdbcEventListener() {
-    return JdbcEventListenerFactoryLoader.load().createJdbcEventListener();
-  }
+    public static JdbcEventListener getJdbcEventListener() {
+        return JdbcEventListenerFactoryLoader.load().createJdbcEventListener();
+    }
 
 }

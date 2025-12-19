@@ -19,9 +19,10 @@ configuration layers (including defaults) to properly override/modify those.
 There are **two cases one needs to distinguish when overriding**:
 
 * don't override the property on the current level (can be achieved by specifying neither key nor value) and
-* clear the property value (can be achieved by specifying the key empty string value, could be for specified in `spy.properties` like this: `excludecategories=`)
+* clear the property value (can be achieved by specifying the key empty string value, could be for specified in
+  `spy.properties` like this: `excludecategories=`)
 
-The `spy.properties` configuration file can be located in various places.  The following locations are searched
+The `spy.properties` configuration file can be located in various places. The following locations are searched
 to locate the file.
 
 1. The file name configured in the system property "spy.properties" (can include path)
@@ -30,7 +31,8 @@ to locate the file.
 
 ## Properties exposal via JMX
 
-Please note that all the properties are exposed via JMX. So you can use your tool of choice (e.g.,JConsole) to view/change them.
+Please note that all the properties are exposed via JMX. So you can use your tool of choice (e.g.,JConsole) to
+view/change them.
 Moreover reload operation is exposed as well. To provide on-demand reload option.
 
 In the JConsole p6spy related JMX attributes might look like this:
@@ -39,7 +41,8 @@ In the JConsole p6spy related JMX attributes might look like this:
 
 ## Command Line Options
 
-Every parameter specified in the property file can be set and overriden at the command line using the Java -D flag (system property), adding the the prefix:
+Every parameter specified in the property file can be set and overriden at the command line using the Java -D flag (
+system property), adding the the prefix:
 
     p6spy.config.
 
@@ -47,11 +50,13 @@ An example follows:
 
     java -Dp6spy.config.logfile=my.log -Dp6spy.config.append=true
 
-Moreover to set different file to be used as the properties file (as an example: another_spy.properties), it should be specified using system property "spy.properties" as:
+Moreover to set different file to be used as the properties file (as an example: another_spy.properties), it should be
+specified using system property "spy.properties" as:
 
     java -Dspy.properties=c:\jboss\lib\another_spy.properties
-    
-The encoding for loading the properties file can be set via `-Dfile.encoding=<charset name>` or via p6spy specific System property: `-Dspy.properties.charset=<charset name>`.
+
+The encoding for loading the properties file can be set via `-Dfile.encoding=<charset name>` or via p6spy specific
+System property: `-Dspy.properties.charset=<charset name>`.
 
 ## Common Property File Settings
 
@@ -314,15 +319,15 @@ in section: [Configuration and Usage](#configuration-and-usage)):
 
 ### modulelist
 
-modulelist holds the list of p6spy modules activated. A module contains a group of functionality. If none are specified only core
-p6spy framework will be activated (no logging,...). Still once reload of the properties happen, or these are set by JMX, modules would be
+modulelist holds the list of p6spy modules activated. A module contains a group of functionality. If none are specified
+only core
+p6spy framework will be activated (no logging,...). Still once reload of the properties happen, or these are set by JMX,
+modules would be
 dynamically loaded/unloaded.
 
 The following modules come with the p6spy by default:
 
-
     modulelist=com.p6spy.engine.logging.P6LogFactory,com.p6spy.engine.outage.P6OutageFactory
-
 
 Where these are required:
 
@@ -337,7 +342,8 @@ This is a comma separated list of JDBC driver classes to load and register with 
 the classname(s) of the JDBC driver(s) that you want to proxy with P6Spy if any of the following conditions are met.
 
 1. The JDBC driver does not implement the JDBC 4.0 API
-1. You are using a JNDI Data Source - Some application servers will prevent the automatic registration feature from working.
+1. You are using a JNDI Data Source - Some application servers will prevent the automatic registration feature from
+   working.
 
 ### autoflush
 
@@ -352,7 +358,8 @@ An example follows:
 ### dateformat
 
 Setting a value for dateformat changes the date format value printed in the log file. No value prints the current time
-in milliseconds (unix time), a useful feature for parsing the log. The date format engine is Java's SimpleDateFormat class.
+in milliseconds (unix time), a useful feature for parsing the log. The date format engine is Java's SimpleDateFormat
+class.
 Refer to the SimpleDateFormat class in the JavaDocs for information on setting this value. An example follows:
 
     dateformat=MM-dd-yy HH:mm:ss:SS
@@ -363,15 +370,23 @@ If stacktrace is set, the log prints out the stack trace for each SQL statement 
 
 ### stacktraceclass
 
-Limits the stack traces printed to those that contain the value set in stacktraceclass. For example, specifying stacktraceclass=com.mycompany.myclass limits the printing of stack traces to the specified class value. The stack trace is converted to a String and string.indexOf(stacktraceclass) is performed.
+Limits the stack traces printed to those that contain the value set in stacktraceclass. For example, specifying
+stacktraceclass=com.mycompany.myclass limits the printing of stack traces to the specified class value. The stack trace
+is converted to a String and string.indexOf(stacktraceclass) is performed.
 
 ### reloadproperties and reloadpropertiesinterval
 
-If reloadproperties is set to true, the property file is reloaded every n seconds, where n is defined by the value set by reloadpropertiesinterval. For example, if reloadproperties=true and reloadpropertiesinterval=10, the system checks the File.lastModified() property of the property file every 10 seconds, and if the file has been modified, it will be reloaded.
+If reloadproperties is set to true, the property file is reloaded every n seconds, where n is defined by the value set
+by reloadpropertiesinterval. For example, if reloadproperties=true and reloadpropertiesinterval=10, the system checks
+the File.lastModified() property of the property file every 10 seconds, and if the file has been modified, it will be
+reloaded.
 
-If you set append=true, the log will be suddenly truncated when you change your properties. This is because using reloadproperties is intended to be the equivalent of restarting your application server. Restarting your application server truncates your log file.
+If you set append=true, the log will be suddenly truncated when you change your properties. This is because using
+reloadproperties is intended to be the equivalent of restarting your application server. Restarting your application
+server truncates your log file.
 
-reloadproperties will not reload any driver information (such as realdriver, realdriver2, and realdriver3) and will not change the modules that are in memory.
+reloadproperties will not reload any driver information (such as realdriver, realdriver2, and realdriver3) and will not
+change the modules that are in memory.
 
 ### appender
 
@@ -408,15 +423,16 @@ and logging to a file (default). Please note, that all of these output in the CS
         #appender=com.p6spy.engine.spy.appender.StdoutLogger
         #appender=com.p6spy.engine.spy.appender.FileLogger
 
-    In general you need to slf4j-api and the appropriate bridge to the actual logging
-implementation as well as the logging implementation itself on your classpath. To simplify setup for those not having any of the additional dependencies already
-on classpath following `*-nodep.jar` bundles are provided as part of p6spy distribution:
+  In general you need to slf4j-api and the appropriate bridge to the actual logging
+  implementation as well as the logging implementation itself on your classpath. To simplify setup for those not having
+  any of the additional dependencies already
+  on classpath following `*-nodep.jar` bundles are provided as part of p6spy distribution:
 
     * `p6spy-<version>-log4j-nodep.jar` - having [log4j](http://logging.apache.org/log4j/1.2/) included,
     * `p6spy-<version>-log4j2-nodep.jar` - having [log4j2](http://logging.apache.org/log4j/2.x/) included and
     * `p6spy-<version>-logback-nodep.jar` - having [logback](http://logback.qos.ch/) included.
 
-    Mapping to SLF4J levels is provided in the following way:
+  Mapping to SLF4J levels is provided in the following way:
 
     <table>
     <tr><th>P6Spy category</th><th>SLF4J level</th></tr>
@@ -426,17 +442,19 @@ on classpath following `*-nodep.jar` bundles are provided as part of p6spy distr
     <tr><td>info/any other category</td><td>info</td></tr>
     </table>
 
-    Internally is Slf4j Logger is retrieved for the: `p6spy`, keep this in mind when configuring your logging implementation. So for example for the `log4j` following could be used to restrict the p6spy logging (if using xml-based configuration) to `INFO` level only:
+  Internally is Slf4j Logger is retrieved for the: `p6spy`, keep this in mind when configuring your logging
+  implementation. So for example for the `log4j` following could be used to restrict the p6spy logging (if using
+  xml-based configuration) to `INFO` level only:
 
           <category name="p6spy">
             <priority value="INFO" />
           </category>
 
-    For further instructions on configuring SLF4J, see the [SLF4J documentation](http://www.slf4j.org/manual.html).
+  For further instructions on configuring SLF4J, see the [SLF4J documentation](http://www.slf4j.org/manual.html).
 
 ### logMessageFormat
 
-The log message format is selected by specifying the class to use to format the log messages.  The following
+The log message format is selected by specifying the class to use to format the log messages. The following
 classes are available with P6Spy.
 
 * `com.p6spy.engine.spy.appender.SingleLineFormat` which results in log messages in format:
@@ -444,7 +462,7 @@ classes are available with P6Spy.
       current time|execution time|category|connection id|statement SQL String|effective SQL string
 
 * `com.p6spy.engine.spy.appender.CustomLineFormat`, which allows log messages to be full customized, in a separate
-    property called `customLogMessageFormat`. See below for details.
+  property called `customLogMessageFormat`. See below for details.
 
 * `com.p6spy.engine.spy.appender.MultiLineFormat`, which results in log messages in format:
 
@@ -466,7 +484,7 @@ Where:
   call is recorded in the result category.
 * `category` - You can manage your log by including and excluding categories,
   which is described in [Common Property File Settings](#common-property-file-settings).
-* `connection id` - Indicates the connection on which the activity was logged.  The connection id is a sequentially
+* `connection id` - Indicates the connection on which the activity was logged. The connection id is a sequentially
   generated identifier.
 * `statement SQL string` - This is the SQL string passed to the statement object.
   If it is a prepared statement, it is the prepared statement that existed prior to
@@ -477,11 +495,12 @@ Where:
   still sees the prepared statement, but this string is a convenient way to see the
   actual values being sent to the database.
 
-The `com.p6spy.engine.spy.appender.MultiLineFormat` might be better from a readability perspective.  Because it will place the effective SQL statement
-on a separate line.  However, the SingleLineFormat might be better if you have a need to parse the log messages.
+The `com.p6spy.engine.spy.appender.MultiLineFormat` might be better from a readability perspective. Because it will
+place the effective SQL statement
+on a separate line. However, the SingleLineFormat might be better if you have a need to parse the log messages.
 The default is `com.p6spy.engine.spy.appender.SingleLineFormat` for backward compatibility.
 
-You can also supply your own log message formatter to customize the format.  Simply create a class which implements
+You can also supply your own log message formatter to customize the format. Simply create a class which implements
 the `com.p6spy.engine.spy.appender.MessageFormattingStrategy` interface and place it on the classpath.
 
 ### customLogMessageFormat
@@ -498,7 +517,8 @@ and the following placeholders being resolved to the appropriate values:
 * `%(effectiveSql)`           the SQL statement as submitted to the driver
 * `%(effectiveSqlSingleLine)` the SQL statement as submitted to the driver, with all new lines removed
 * `%(sql)`                    the SQL statement with all bind variables replaced with actual values
-* `%(sqlSingleLine)`          the SQL statement with all bind variables replaced with actual values, with all new lines removed
+* `%(sqlSingleLine)`          the SQL statement with all bind variables replaced with actual values, with all new lines
+  removed
 
 ### databaseDialectDateFormat
 
@@ -516,10 +536,12 @@ Refer to the SimpleDateFormat class in the JavaDocs for information on setting t
 
 ### filter, include, exclude
 
-P6Spy allows you to filter SQL queries by specific strings to be present (`includes` property value) or not present (`excludes` property value).
+P6Spy allows you to filter SQL queries by specific strings to be present (`includes` property value) or not present (
+`excludes` property value).
 As a precondition, setting `filter=true` has to be provided.
 P6Spy will perform string matching on each statement to determine if it should be written to the log file.
-`include` accepts a comma-delimited list of expressions which is required to appear in a statement before it can appear in the log. `exclude` accepts a comma-delimited list to exclude.
+`include` accepts a comma-delimited list of expressions which is required to appear in a statement before it can appear
+in the log. `exclude` accepts a comma-delimited list to exclude.
 Exclusion overrides inclusion, so that a statement matching both an include string and an exclude string is excluded.
 
 Please note that matching mode used in the underlying regex is (achieved via prefix `(?mis)`):
@@ -536,7 +558,8 @@ An example showing capture of all statements having select, except those having 
     # comma separated list of strings to exclude
     exclude=order
 
-Please note, that internally following regex would be used for particular expression matching: `(?mis)^(?!.*(order).*)(.*(select).*)$`
+Please note, that internally following regex would be used for particular expression matching:
+`(?mis)^(?!.*(order).*)(.*(select).*)$`
 
 An example showing only capture statements having any of: order_details, price, and price_history follows:
 
@@ -546,7 +569,8 @@ An example showing only capture statements having any of: order_details, price, 
     # comma separated list of strings to exclude
     exclude=
 
-Please note, that internally following regex would be used for particular expression matching: `(?mis)^(.*(order|order_details|price|price_history).*)$`
+Please note, that internally following regex would be used for particular expression matching:
+`(?mis)^(.*(order|order_details|price|price_history).*)$`
 
 An example showing the capture of all statements, except statements order string in them follows:
 
@@ -556,7 +580,8 @@ An example showing the capture of all statements, except statements order string
     # comma separated list of strings to exclude
     exclude=order
 
-Please note, that internally following regex would be used for particular expression matching: `(?mis)^(?!.*(order).*)(.*)$`
+Please note, that internally following regex would be used for particular expression matching:
+`(?mis)^(?!.*(order).*)(.*)$`
 
 As you can use full regex syntax, capture of statements having: pri[cz]e follows:
 
@@ -566,9 +591,11 @@ As you can use full regex syntax, capture of statements having: pri[cz]e follows
     # comma separated list of strings to exclude
     exclude=
 
-Please note, that internally following regex would be used for particular expression matching: `(?mis)^(.*(pri[cz]e).*)$`
+Please note, that internally following regex would be used for particular expression matching:
+`(?mis)^(.*(pri[cz]e).*)$`
 
-Moreover, please note, that special characters escaping (used in java) has to be done for the provided regular expression.
+Moreover, please note, that special characters escaping (used in java) has to be done for the provided regular
+expression.
 As an example, matching for:
 
     from\scustomers
@@ -580,7 +607,8 @@ would mean, that following should be specified (please note doubled backslash):
 
 ### filter, sqlexpression
 
-If you need more control over regular expression for matching, SQL string property `sqlexpression` is to be used as an alternative to `exclude` and `include`.
+If you need more control over regular expression for matching, SQL string property `sqlexpression` is to be used as an
+alternative to `exclude` and `include`.
 An example follows:
 
     filter=true
@@ -589,7 +617,8 @@ An example follows:
 If your expression matches the SQL string, it is logged. If the expression does not match, it is not logged.
 Please note you can use `sqlexpression` together with `include`/`exclude`, where both would be evaluated.
 
-Moreover, please note, that special characters escaping (used in java) has to be done for the provided regular expression.
+Moreover, please note, that special characters escaping (used in java) has to be done for the provided regular
+expression.
 As an example, matching for:
 
     ^(.*(from\scustomers).*)$
@@ -601,7 +630,8 @@ would mean, that following should be specified (please note doubled backslash)::
 
 ### excludecategories
 
-The log includes category information that describes the type of statement. This property excludes the listed categories. Valid options include the following:
+The log includes category information that describes the type of statement. This property excludes the listed
+categories. Valid options include the following:
 
 * `error` includes P6Spy errors. (It is recommended that you include this category.)
 * `info` includes driver startup information and property file information.
@@ -614,7 +644,8 @@ The log includes category information that describes the type of statement. This
 * `result` includes statements generated by ResultSet.
 * `resultset` includes values retrieve from the ResultSet.
 
-Enter a comma-delimited list of categories to exclude from your log file. See filter, include, exclude for more details on how this process works.
+Enter a comma-delimited list of categories to exclude from your log file. See filter, include, exclude for more details
+on how this process works.
 
 ### excludebinary
 

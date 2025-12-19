@@ -19,13 +19,13 @@
 
 -->
 <metadata>
-  <groupId>p6spy</groupId>
-  <artifactId>p6spy-signedjar-test</artifactId>
-  <versioning>
-    <release>1.0.0</release>
-    <versions>
-      <version>1.0.0</version>
-    </versions>
-    <lastUpdated>20160415103410</lastUpdated>
-  </versioning>
+    <groupId>p6spy</groupId>
+    <artifactId>p6spy-signedjar-test</artifactId>
+    <versioning>
+        <release>1.0.0</release>
+        <versions>
+            <version>1.0.0</version>
+        </versions>
+        <lastUpdated>20160415103410</lastUpdated>
+    </versioning>
 </metadata>

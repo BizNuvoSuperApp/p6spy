@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,22 +17,22 @@
  */
 package com.p6spy.engine.logging;
 
-import java.util.regex.Pattern;
-
 import com.p6spy.engine.spy.P6LoadableOptions;
+
+import java.util.regex.Pattern;
 
 public interface P6LogLoadableOptions extends P6LoadableOptions, P6LogOptionsMBean {
 
-  // these we don't need to be exposed via JMX
-  
-  void setExcludebinary(String excludebinary);
-  
-  void setFilter(String filter);
+    // these we don't need to be exposed via JMX
 
-  void setExecutionThreshold(String executionThreshold);
-  
-  Pattern getIncludeExcludePattern();
+    void setExcludebinary(String excludebinary);
 
-  Pattern getSQLExpressionPattern();
+    void setFilter(String filter);
+
+    void setExecutionThreshold(String executionThreshold);
+
+    Pattern getIncludeExcludePattern();
+
+    Pattern getSQLExpressionPattern();
 
 }

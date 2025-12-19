@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,53 +25,53 @@ import java.sql.Statement;
  */
 public class StatementInformation implements Loggable {
 
-  private final ConnectionInformation connectionInformation;
-  private Statement statement;
-  private String statementQuery;
-  private long totalTimeElapsed;
+    private final ConnectionInformation connectionInformation;
+    private Statement statement;
+    private String statementQuery;
+    private long totalTimeElapsed;
 
-  public StatementInformation(final ConnectionInformation connectionInformation) {
-    this.connectionInformation = connectionInformation;
-  }
+    public StatementInformation(final ConnectionInformation connectionInformation) {
+        this.connectionInformation = connectionInformation;
+    }
 
-  public Statement getStatement() {
-    return statement;
-  }
+    public Statement getStatement() {
+        return statement;
+    }
 
-  public void setStatement(Statement statement) {
-    this.statement = statement;
-  }
+    public void setStatement(Statement statement) {
+        this.statement = statement;
+    }
 
-  public String getStatementQuery() {
-    return statementQuery;
-  }
+    public String getStatementQuery() {
+        return statementQuery;
+    }
 
-  public void setStatementQuery(final String statementQuery) {
-    this.statementQuery = statementQuery;
-  }
+    public void setStatementQuery(final String statementQuery) {
+        this.statementQuery = statementQuery;
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public ConnectionInformation getConnectionInformation() {
-    return this.connectionInformation;
-  }
+    /** {@inheritDoc} */
+    @Override
+    public ConnectionInformation getConnectionInformation() {
+        return this.connectionInformation;
+    }
 
-  @Override
-  public String getSqlWithValues() {
-    return getSql();
-  }
+    @Override
+    public String getSqlWithValues() {
+        return getSql();
+    }
 
-  @Override
-  public String getSql() {
-    return getStatementQuery();
-  }
+    @Override
+    public String getSql() {
+        return getStatementQuery();
+    }
 
-  public long getTotalTimeElapsed() {
-    return totalTimeElapsed;
-  }
+    public long getTotalTimeElapsed() {
+        return totalTimeElapsed;
+    }
 
-  public void incrementTimeElapsed(long timeElapsedNanos) {
-    totalTimeElapsed += timeElapsedNanos;
-  }
+    public void incrementTimeElapsed(long timeElapsedNanos) {
+        totalTimeElapsed += timeElapsedNanos;
+    }
 
 }

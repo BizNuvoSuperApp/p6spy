@@ -1,14 +1,14 @@
 /**
  * P6Spy
- *
+ * <p>
  * Copyright (C) 2002 P6Spy
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,80 +38,80 @@ import java.util.regex.Pattern;
  */
 public class Value {
 
-  private static final Pattern ESPECIAL_CHARACTER_PATTERN = Pattern.compile("'");
-  /**
-   * Value itself.
-   */
-  private Object value;
+    private static final Pattern ESPECIAL_CHARACTER_PATTERN = Pattern.compile("'");
+    /**
+     * Value itself.
+     */
+    private Object value;
 
-  /**
-   * Calendar used to store the timezone for Date, Time And Timestamp types
-   */
-  private Calendar timezoneHolder = null;
+    /**
+     * Calendar used to store the timezone for Date, Time And Timestamp types
+     */
+    private Calendar timezoneHolder = null;
 
-  public Value(Object valueToSet) {
-    this();
-    this.value = valueToSet;
-  }
+    public Value(Object valueToSet) {
+        this();
+        this.value = valueToSet;
+    }
 
-  public Value(Object valueToSet, Calendar timezoneHolder) {
-    this();
-    this.value = valueToSet;
-    this.timezoneHolder = timezoneHolder;
-  }
+    public Value(Object valueToSet, Calendar timezoneHolder) {
+        this();
+        this.value = valueToSet;
+        this.timezoneHolder = timezoneHolder;
+    }
 
-  public Value() {
-  }
+    public Value() {
+    }
 
-  public Object getValue() {
-    return value;
-  }
+    public Object getValue() {
+        return value;
+    }
 
-  public void setValue(Object value) {
-    this.value = value;
-  }
+    public void setValue(Object value) {
+        this.value = value;
+    }
 
-  @Override
-  public String toString() {
-    return convertToString(this.value);
-  }
+    @Override
+    public String toString() {
+        return convertToString(this.value);
+    }
 
-  /**
-   * Returns the {@link String} representation of the given value depending on
-   * the value type. Formats:
-   * <ul>
-   * <li>{@link java.util.Date} values it in a way configured via configuration
-   * property: {@code dateformat},</li>
-   * <li>{@code byte[]} values are converted to {@link String} representation using the configured
-   * database dialect {@link BinaryFormat}, unless configuration property {@code exclidebinary=true} is
-   * set.</li>
-   * <li>for other types string representation is simply returned.</li>
-   * </ul>
-   *
-   * @param value
-   * @return
-   */
-  public String convertToString(Object value) {
-    String result;
-    
-    if (value == null) {
-      result = "NULL";
-    } else {
+    /**
+     * Returns the {@link String} representation of the given value depending on
+     * the value type. Formats:
+     * <ul>
+     * <li>{@link java.util.Date} values it in a way configured via configuration
+     * property: {@code dateformat},</li>
+     * <li>{@code byte[]} values are converted to {@link String} representation using the configured
+     * database dialect {@link BinaryFormat}, unless configuration property {@code exclidebinary=true} is
+     * set.</li>
+     * <li>for other types string representation is simply returned.</li>
+     * </ul>
+     *
+     * @param value
+     * @return
+     */
+    public String convertToString(Object value) {
+        String result;
 
-      if (value instanceof byte[]) {
-        // P6LogFactory may not be registered
-        P6LogLoadableOptions logOptions = P6LogOptions.getActiveInstance();
-        if (logOptions != null && logOptions.getExcludebinary()) {
-          result = "[binary]";
+        if (value == null) {
+            result = "NULL";
         } else {
-          BinaryFormat binaryFormat = P6SpyOptions.getActiveInstance().getDatabaseDialectBinaryFormatInstance();
-          
-          // return early because BinaryFormat#toString wraps the value in quotes if needed
-          return binaryFormat.toString((byte[]) value);
-        }
-        
-        // we should not do ((Blob) value).getBinaryStream(). ...
-        // as inputstream might not be re-rea
+
+            if (value instanceof byte[]) {
+                // P6LogFactory may not be registered
+                P6LogLoadableOptions logOptions = P6LogOptions.getActiveInstance();
+                if (logOptions != null && logOptions.getExcludebinary()) {
+                    result = "[binary]";
+                } else {
+                    BinaryFormat binaryFormat = P6SpyOptions.getActiveInstance().getDatabaseDialectBinaryFormatInstance();
+
+                    // return early because BinaryFormat#toString wraps the value in quotes if needed
+                    return binaryFormat.toString((byte[]) value);
+                }
+
+                // we should not do ((Blob) value).getBinaryStream(). ...
+                // as inputstream might not be re-rea
 //      } else  if (value instanceof Blob) {
 //        P6LogLoadableOptions logOptions = P6LogOptions.getActiveInstance();
 //        if (logOptions != null && logOptions.getExcludebinary()) {
@@ -119,77 +119,77 @@ public class Value {
 //        } else {
 //          result = value.toString();
 //        }
-      } else if (value instanceof Timestamp) {
-        SimpleDateFormat sdf = new SimpleDateFormat(P6SpyOptions.getActiveInstance().getDatabaseDialectTimestampFormat());
-        if (timezoneHolder != null) {
-          sdf.setTimeZone(timezoneHolder.getTimeZone());
-        }
-        result = sdf.format(value);
-      } else if (value instanceof Date) {
-        SimpleDateFormat sdf = new SimpleDateFormat(P6SpyOptions.getActiveInstance().getDatabaseDialectDateFormat());
-        if (timezoneHolder != null) {
-          sdf.setTimeZone(timezoneHolder.getTimeZone());
-        }
-        result = sdf.format(value);
-      } else if (value instanceof Boolean) {
-        if ("numeric".equals(P6SpyOptions.getActiveInstance().getDatabaseDialectBooleanFormat())) {
-          result = Boolean.FALSE.equals(value) ? "0" : "1";
-        } else {
-          result = value.toString();
-        }
-      } else {
-        result = value.toString();
-      }
+            } else if (value instanceof Timestamp) {
+                SimpleDateFormat sdf = new SimpleDateFormat(P6SpyOptions.getActiveInstance().getDatabaseDialectTimestampFormat());
+                if (timezoneHolder != null) {
+                    sdf.setTimeZone(timezoneHolder.getTimeZone());
+                }
+                result = sdf.format(value);
+            } else if (value instanceof Date) {
+                SimpleDateFormat sdf = new SimpleDateFormat(P6SpyOptions.getActiveInstance().getDatabaseDialectDateFormat());
+                if (timezoneHolder != null) {
+                    sdf.setTimeZone(timezoneHolder.getTimeZone());
+                }
+                result = sdf.format(value);
+            } else if (value instanceof Boolean) {
+                if ("numeric".equals(P6SpyOptions.getActiveInstance().getDatabaseDialectBooleanFormat())) {
+                    result = Boolean.FALSE.equals(value) ? "0" : "1";
+                } else {
+                    result = value.toString();
+                }
+            } else {
+                result = value.toString();
+            }
 
-      result = quoteIfNeeded(result, value);
+            result = quoteIfNeeded(result, value);
+        }
+
+        return result;
     }
 
-    return result;
-  }
-
-  /**
-   * Qoutes the passed {@code stringValue} if it's needed.
-   * 
-   * @param stringValue
-   * @param obj
-   * @return
-   */
-  private String quoteIfNeeded(String stringValue, Object obj) {
-    if (stringValue == null) {
-      return null;
-    }
-
-    /*
-     * The following types do not get quoted: numeric, boolean.
-     * Binary data is quoted only if the supplied binaryFormat requires that.
-     * 
-     * It is tempting to use ParameterMetaData.getParameterType() for this
-     * purpose as it would be safer. However, this method will fail with some
-     * JDBC drivers.
-     * 
-     * Oracle: Not supported until ojdbc7 which was released with Oracle 12c.
-     * https://forums.oracle.com/thread/2584886
-     * 
-     * MySQL: The method call only works if service side prepared statements are
-     * enabled. The URL parameter 'useServerPrepStmts=true' enables.
+    /**
+     * Qoutes the passed {@code stringValue} if it's needed.
+     *
+     * @param stringValue
+     * @param obj
+     * @return
      */
-    if (Number.class.isAssignableFrom(obj.getClass()) || Boolean.class.isAssignableFrom(obj.getClass())) {
-      return stringValue;
-    } else {
-      return "'" + escape(stringValue) + "'";
-    }
-  }
+    private String quoteIfNeeded(String stringValue, Object obj) {
+        if (stringValue == null) {
+            return null;
+        }
 
-  /**
-   * Escapes special characters in SQL values. Currently is only {@code '}
-   * escaped with {@code ''}.
-   * 
-   * @param stringValue
-   *          value to escape
-   * @return escaped value.
-   */
-  private String escape(String stringValue) {
-    return ESPECIAL_CHARACTER_PATTERN.matcher(stringValue).replaceAll("''");
-  }
+        /*
+         * The following types do not get quoted: numeric, boolean.
+         * Binary data is quoted only if the supplied binaryFormat requires that.
+         *
+         * It is tempting to use ParameterMetaData.getParameterType() for this
+         * purpose as it would be safer. However, this method will fail with some
+         * JDBC drivers.
+         *
+         * Oracle: Not supported until ojdbc7 which was released with Oracle 12c.
+         * https://forums.oracle.com/thread/2584886
+         *
+         * MySQL: The method call only works if service side prepared statements are
+         * enabled. The URL parameter 'useServerPrepStmts=true' enables.
+         */
+        if (Number.class.isAssignableFrom(obj.getClass()) || Boolean.class.isAssignableFrom(obj.getClass())) {
+            return stringValue;
+        } else {
+            return "'" + escape(stringValue) + "'";
+        }
+    }
+
+    /**
+     * Escapes special characters in SQL values. Currently is only {@code '}
+     * escaped with {@code ''}.
+     *
+     * @param stringValue
+     *          value to escape
+     * @return escaped value.
+     */
+    private String escape(String stringValue) {
+        return ESPECIAL_CHARACTER_PATTERN.matcher(stringValue).replaceAll("''");
+    }
 
 }
