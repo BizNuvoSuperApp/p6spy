@@ -26,6 +26,8 @@ import java.util.regex.Pattern;
 public class P6Util {
     static Pattern lineBreakPattern = Pattern.compile("(\\r?\\n)+");
 
+    private static ThreadGroup P6_THREAD_GROUP;
+
     public static String singleLine(String str) {
         return lineBreakPattern.matcher(str).replaceAll(" ");
     }
@@ -217,6 +219,18 @@ public class P6Util {
             sb.append(str);
         }
         return sb.toString();
+    }
+
+    /**
+     * @return ThreadGroup that is associated with all P6Spy threads.
+     */
+    public static ThreadGroup getP6ThreadGroup() {
+        if (P6_THREAD_GROUP == null) {
+            P6_THREAD_GROUP = new ThreadGroup("P6SpyThreadGroup");
+            P6_THREAD_GROUP.setDaemon(true);
+        }
+
+        return P6_THREAD_GROUP;
     }
 
 }

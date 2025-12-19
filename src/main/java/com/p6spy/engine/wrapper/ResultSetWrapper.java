@@ -91,7 +91,7 @@ public class ResultSetWrapper extends AbstractWrapper implements ResultSet {
             e = sqle;
             throw e;
         } finally {
-            eventListener.onAfterResultSetClose(resultSetInformation, e);
+            eventListener.onAfterResultSetClose(resultSetInformation, System.nanoTime(), e);
         }
     }
 

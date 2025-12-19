@@ -324,6 +324,14 @@ public abstract class JdbcEventListener {
     }
 
     /**
+     * This callback method is executed after the {@link Statement#getResultSet()} method is invoked.
+     *
+     * @param resultSetInformation The meta information about the {@link ResultSet} being returned
+     */
+    public void onAfterGetResultSet(ResultSetInformation resultSetInformation) {
+    }
+
+    /**
      * This callback method is executed before the {@link ResultSet#next()} method is invoked.
      *
      * @param resultSetInformation The meta information about the {@link ResultSet} being invoked
@@ -347,10 +355,11 @@ public abstract class JdbcEventListener {
      * This callback method is executed after the {@link ResultSet#close()} method is invoked.
      *
      * @param resultSetInformation The meta information about the {@link ResultSet} being invoked
+     * @param closeTimeNanos       When the result set was closed (<code>System.nanoTime()</code>)
      * @param e                    The {@link SQLException} which may be triggered by the call (<code>null</code> if
      *                             there was no exception).
      */
-    public void onAfterResultSetClose(ResultSetInformation resultSetInformation, SQLException e) {
+    public void onAfterResultSetClose(ResultSetInformation resultSetInformation, long closeTimeNanos, SQLException e) {
     }
 
     /**

@@ -92,7 +92,7 @@ public class LoggingEventListener extends SimpleJdbcEventListener {
     }
 
     @Override
-    public void onAfterResultSetClose(ResultSetInformation resultSetInformation, SQLException e) {
+    public void onAfterResultSetClose(ResultSetInformation resultSetInformation, long closeTimeNanos, SQLException e) {
         if (resultSetInformation.getCurrRow() > -1) {
             // If the result set has not been advanced to the first row, there is nothing to log.
             resultSetInformation.generateLogMessage();

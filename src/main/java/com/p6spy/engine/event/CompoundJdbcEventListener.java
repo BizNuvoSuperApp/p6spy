@@ -256,9 +256,9 @@ public class CompoundJdbcEventListener extends JdbcEventListener {
     }
 
     @Override
-    public void onAfterResultSetClose(ResultSetInformation resultSetInformation, SQLException e) {
+    public void onAfterResultSetClose(ResultSetInformation resultSetInformation, long closeTimeNanos, SQLException e) {
         for (JdbcEventListener eventListener : eventListeners) {
-            eventListener.onAfterResultSetClose(resultSetInformation, e);
+            eventListener.onAfterResultSetClose(resultSetInformation, closeTimeNanos, e);
         }
     }
 

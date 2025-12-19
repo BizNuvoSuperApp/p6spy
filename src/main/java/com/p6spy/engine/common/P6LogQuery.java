@@ -82,8 +82,8 @@ public class P6LogQuery implements P6OptionChangedListener {
         }
     }
 
-    protected static void doLog(long elapsed, Category category, String prepared, String sql) {
-        doLog(-1, elapsed, category, prepared, sql, "");
+    protected static void doLog(long elapsed, Category category, String prepared, String sql, String url) {
+        doLog(-1, elapsed, category, prepared, sql, url != null ? url : "");
     }
 
     // this is an internal method called by logElapsed
@@ -176,13 +176,19 @@ public class P6LogQuery implements P6OptionChangedListener {
 
     public static void log(Category category, String prepared, String sql) {
         if (logger != null && isCategoryOk(category)) {
-            doLog(-1, category, prepared, sql);
+            doLog(-1, category, prepared, sql, null);
         }
     }
 
     public static void log(Category category, Loggable loggable) {
         if (logger != null && isCategoryOk(category) && isLoggable(loggable.getSql())) {
-            doLog(-1, category, loggable.getSql(), loggable.getSqlWithValues());
+            doLog(-1, category, loggable.getSql(), loggable.getSqlWithValues(), null);
+        }
+    }
+
+    public static void log(Category category, long timeElapsedNanos, String sql, String sqlWithValues, String url) {
+        if (logger != null && isCategoryOk(category)) {
+            doLog(timeElapsedNanos, category, sql, sqlWithValues, url);
         }
     }
 
@@ -219,7 +225,7 @@ public class P6LogQuery implements P6OptionChangedListener {
 
     public static void info(String sql) {
         if (logger != null && isCategoryOk(Category.INFO)) {
-            doLog(-1, Category.INFO, "", sql);
+            doLog(-1, Category.INFO, "", sql, null);
         }
     }
 
@@ -230,7 +236,7 @@ public class P6LogQuery implements P6OptionChangedListener {
     public static void debug(String sql) {
         if (isDebugEnabled()) {
             if (logger != null) {
-                doLog(-1, Category.DEBUG, "", sql);
+                doLog(-1, Category.DEBUG, "", sql, null);
             } else {
                 System.err.println(sql);
             }
@@ -240,7 +246,7 @@ public class P6LogQuery implements P6OptionChangedListener {
     public static void error(String sql) {
         System.err.println("Warning: " + sql);
         if (logger != null) {
-            doLog(-1, Category.ERROR, "", sql);
+            doLog(-1, Category.ERROR, "", sql, null);
         }
     }
 

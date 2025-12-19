@@ -38,6 +38,7 @@ public class Category {
     public static final Category ROLLBACK = new Category("rollback");
     public static final Category RESULT = new Category("result");
     public static final Category OUTAGE = new Category("outage");
+    public static final Category RSLEAK = new Category("rsleak");
 
     private final String name;
 
