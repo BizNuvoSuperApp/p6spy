@@ -55,7 +55,7 @@ public enum P6OutageDetector implements Runnable {
     private boolean haltThread;
 
     /** Creates new P6OutageDetector */
-    private P6OutageDetector() {
+    P6OutageDetector() {
         pendingMessages = new ConcurrentHashMap<Object, InvocationInfo>();
 
         // create and run the auxilliary thread

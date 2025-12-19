@@ -19,11 +19,11 @@ package com.p6spy.engine.modules.outage;
 
 public interface P6OutageOptionsMBean {
 
-    public boolean getOutageDetection();
+    boolean getOutageDetection();
 
     void setOutageDetection(boolean outagedetection);
 
-    public long getOutageDetectionInterval();
+    long getOutageDetectionInterval();
 
     void setOutageDetectionInterval(long outagedetectioninterval);
 

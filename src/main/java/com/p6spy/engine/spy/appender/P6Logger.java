@@ -38,8 +38,8 @@ public interface P6Logger {
      * @param url
      *            the database url where the sql statement executed
      */
-    public void logSQL(int connectionId, String now, long elapsed,
-                       Category category, String prepared, String sql, String url);
+    void logSQL(int connectionId, String now, long elapsed,
+                Category category, String prepared, String sql, String url);
 
     /**
      * Logs the stacktrace of the exception.
@@ -47,7 +47,7 @@ public interface P6Logger {
      * @param e
      *            exception holding the stacktrace to be logged.
      */
-    public void logException(Exception e);
+    void logException(Exception e);
 
     /**
      * Logs the text.
@@ -55,7 +55,7 @@ public interface P6Logger {
      * @param text
      *            to be logged
      */
-    public void logText(String text);
+    void logText(String text);
 
     /**
      * @param category
@@ -63,5 +63,5 @@ public interface P6Logger {
      * @return {@code true} if category is enabled. Otherwise returns
      *         {@code false}
      */
-    public boolean isCategoryEnabled(Category category);
+    boolean isCategoryEnabled(Category category);
 }

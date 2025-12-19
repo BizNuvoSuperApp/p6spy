@@ -25,7 +25,7 @@ import java.util.Set;
 
 public interface P6SpyLoadableOptions extends P6LoadableOptions, P6SpyOptionsMBean {
 
-    public Set<P6Factory> getModuleFactories();
+    Set<P6Factory> getModuleFactories();
 
     void setAutoflush(String autoflush);
 

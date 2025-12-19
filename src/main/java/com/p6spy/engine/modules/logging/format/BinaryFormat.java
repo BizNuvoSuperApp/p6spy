@@ -27,5 +27,5 @@ public interface BinaryFormat {
      * @return
      *    the {@link String} representation of the given bytes
      */
-    public String toString(byte[] input);
+    String toString(byte[] input);
 }

@@ -23,7 +23,7 @@ import java.util.Map;
 
 public interface P6OptionsSource {
 
-    public Map<String, String> getOptions();
+    Map<String, String> getOptions();
 
     /**
      * Intended for the postInit jobs. Called in the {@link P6ModuleManager#P6ModuleManager}. After
